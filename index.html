@@ -3,36 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>Love Letter 💌</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
     body {
       background: linear-gradient(135deg, #ffe6e6, #ffd6f6);
       font-family: 'Segoe UI', sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
-      transform: rotate(0deg);
+      height: 100vh;
+      overflow: hidden;
     }
-
-    @media screen and (orientation: portrait) {
-      body {
-        transform: rotate(90deg);
-        transform-origin: left top;
-        width: 100vh;
-        height: 100vw;
-        overflow-x: hidden;
-        position: absolute;
-        top: 0;
-        left: 0;
-      }
-    }
-
     .container { text-align: center; position: relative; z-index: 2; }
     .envelope {
       cursor: pointer;
@@ -50,26 +31,31 @@
       opacity: 0;
     }
 
+    /* Đây là đoạn đã chỉnh để hiển thị landscape */
     .letter {
       display: none;
-      width: 1024px;
-      max-width: 90%;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-90deg) scale(0.9);
+      transform-origin: center center;
+      width: 70vh;    /* chiều ngang dựa theo chiều cao màn hình */
+      height: 90vw;   /* chiều dọc dựa theo chiều ngang màn hình */
       background: white;
       border-radius: 12px;
       box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-      padding: 30px;
-      margin: auto;
+      padding: 20px;
+      overflow-y: auto;
       animation: fadeIn 1s ease forwards;
-      max-height: 90vh;
-      overflow: auto;
     }
+
     .letter .content {
       text-align: left;
-      font-size: 1.1rem;
-      line-height: 1.7;
+      font-size: 1rem;
+      line-height: 1.6;
       white-space: pre-line;
     }
-    .letter h2 { margin-bottom: 10px; color: #e75480; font-size: 1.5rem; }
+    .letter h2 { margin-bottom: 10px; color: #e75480; }
     .signature {
       margin-top: 20px;
       text-align: right;
@@ -123,7 +109,17 @@
       <div class="content">
         <h2>Gửi em,</h2>
         <p>
-Anh biết rằng thời gian qua chúng ta gặp gỡ và tìm hiểu mới chỉ vỏn vẹn hai tuần...
+Anh biết rằng thời gian qua chúng ta gặp gỡ và tìm hiểu mới chỉ vỏn vẹn hai tuần. Có lẽ so với cả một chặng đường dài phía trước, khoảng thời gian này thật ngắn ngủi. Chúng ta vẫn còn nhiều điều chưa kịp kể nhau nghe, chưa kịp hiểu hết về những góc sâu trong tim mỗi người. Nhưng thật lạ, chỉ bằng những khoảnh khắc đơn giản ấy, em đã để lại trong anh những cảm xúc rất đặc biệt.
+
+Từ những cuộc trò chuyện nhẹ nhàng, những lần gặp gỡ đầy tự nhiên, anh dần cảm nhận được ở em một điều gì đó ấm áp, gần gũi và rất thật. Không phải là cảm giác bùng nổ thoáng qua, mà là sự rung động âm ỉ, nhẹ nhàng nhưng sâu sắc. Nó khiến anh mong được nhìn thấy em mỗi ngày, được lắng nghe em kể về những điều nhỏ bé nhất, và muốn ở bên để sẻ chia từng khoảnh khắc.
+
+Anh không vội vàng hứa hẹn những điều lớn lao, cũng không muốn em cảm thấy bị cuốn theo những lời hoa mỹ. Anh chỉ muốn thành thật với cảm xúc của chính mình, rằng từ sâu trong tim, anh đã dành cho em một sự trân trọng và thương mến thật sự.
+
+Có thể chúng ta vẫn đang ở giai đoạn bắt đầu, nhưng anh mong rằng từ đây, chúng ta có thể cùng nhau viết tiếp những trang mới. Dù sau này có ra sao, anh vẫn muốn hiện tại này là thật lòng nhất.
+
+Anh thích em. Không phải vì những điều hoàn hảo ở em, mà vì chính con người em – tự nhiên, đáng yêu và khiến anh cảm thấy bình yên khi ở cạnh.
+
+Nếu em cũng cảm nhận được một chút gì đó tương tự, anh hy vọng chúng ta sẽ cùng nhau bước tiếp, chậm rãi nhưng chắc chắn, để hiểu và thương nhau nhiều hơn nữa. Cho anh cơ hội được bên cạnh và chăm sóc em nhé? Nếu em sẵn lòng, hãy cùng anh ký tên vào bức thư này — như một lời đồng ý cho cơ hội bắt đầu.
         </p>
         <p class="signature">— Anh</p>
       </div>
@@ -161,9 +157,11 @@ Anh biết rằng thời gian qua chúng ta gặp gỡ và tìm hiểu mới ch�
       }, 600);
     });
 
+    // HEART ANIMATION
     const canvas = document.getElementById('hearts');
     const ctx = canvas.getContext('2d');
     let hearts = [];
+
     function resize() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -211,6 +209,7 @@ Anh biết rằng thời gian qua chúng ta gặp gỡ và tìm hiểu mới ch�
       requestAnimationFrame(animate);
     }
 
+    // SIGNATURE
     function initSignature(canvas) {
       const ctx = canvas.getContext('2d');
       let drawing = false;
@@ -275,4 +274,3 @@ Anh biết rằng thời gian qua chúng ta gặp gỡ và tìm hiểu mới ch�
   </script>
 </body>
 </html>
-
