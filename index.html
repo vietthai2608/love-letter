@@ -4,11 +4,7 @@
   <meta charset="UTF-8">
   <title>Love Letter 💌</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       background: linear-gradient(135deg, #ffe6e6, #ffd6f6);
       font-family: 'Segoe UI', sans-serif;
@@ -18,20 +14,14 @@
       height: 100vh;
       overflow: hidden;
     }
-    .container {
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
+    .container { text-align: center; position: relative; z-index: 2; }
     .envelope {
       cursor: pointer;
       display: inline-block;
       animation: bounce 1.5s infinite;
       transition: transform 0.6s ease, opacity 0.6s ease;
     }
-    .envelope img {
-      width: 400px;
-    }
+    .envelope img { width: 400px; }
     @keyframes bounce {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
@@ -41,7 +31,7 @@
       opacity: 0;
     }
 
-    /* Landscape letter */
+    /* Đây là đoạn đã chỉnh để hiển thị landscape */
     .letter {
       display: none;
       position: fixed;
@@ -49,8 +39,8 @@
       left: 50%;
       transform: translate(-50%, -50%) rotate(-90deg) scale(0.9);
       transform-origin: center center;
-      width: 70vh;
-      height: 90vw;
+      width: 70vh;    /* chiều ngang dựa theo chiều cao màn hình */
+      height: 90vw;   /* chiều dọc dựa theo chiều ngang màn hình */
       background: white;
       border-radius: 12px;
       box-shadow: 0 5px 20px rgba(0,0,0,0.15);
@@ -58,16 +48,14 @@
       overflow-y: auto;
       animation: fadeIn 1s ease forwards;
     }
+
     .letter .content {
       text-align: left;
       font-size: 1rem;
       line-height: 1.6;
       white-space: pre-line;
     }
-    .letter h2 {
-      margin-bottom: 10px;
-      color: #e75480;
-    }
+    .letter h2 { margin-bottom: 10px; color: #e75480; }
     .signature {
       margin-top: 20px;
       text-align: right;
@@ -98,16 +86,8 @@
       touch-action: none;
       margin-top: 5px;
     }
-    .sig-label {
-      font-weight: 600;
-      margin-top: 15px;
-    }
-    .sig-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 10px;
-    }
+    .sig-label { font-weight: 600; margin-top: 15px; }
+    .sig-buttons { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }
     .sig-buttons button {
       background: #e75480;
       color: white;
