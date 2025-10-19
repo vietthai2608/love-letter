@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Love Letter 💌</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: linear-gradient(135deg, #ffe6e6, #ffd6f6);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .container { text-align: center; position: relative; z-index: 2; }
+    .envelope {
+      cursor: pointer;
+      display: inline-block;
+      animation: bounce 1.5s infinite;
+      transition: transform 0.6s ease, opacity 0.6s ease;
+    }
+    .envelope img { width: 400px; }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    .envelope.opening {
+      transform: rotateX(90deg) scale(0.8);
+      opacity: 0;
+    }
+    .letter {
+      display: none;
+      max-width: 400px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+      padding: 20px;
+      margin: auto;
+      animation: fadeIn 1s ease forwards;
+      overflow-y: auto;
+      max-height: 90vh;
+    }
+    .letter .content {
+      text-align: left;
+      font-size: 1rem;
+      line-height: 1.6;
+      white-space: pre-line;
+    }
+    .letter h2 { margin-bottom: 10px; color: #e75480; }
+    .signature {
+      margin-top: 20px;
+      text-align: right;
+      font-style: italic;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    #hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .signature-section {
+      margin-top: 25px;
+      text-align: center;
+    }
+    canvas.signature-canvas {
+      border: 2px dashed #e75480;
+      border-radius: 8px;
+      width: 100%;
+      height: 120px;
+      touch-action: none;
+      margin-top: 5px;
+    }
+    .sig-label { font-weight: 600; margin-top: 15px; }
+    .sig-buttons { display: flex; justify-content: center; gap: 10px; margin-top: 10px; }
+    .sig-buttons button {
+      background: #e75480;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="envelope" id="envelope">
+      <img src="loveletter.png" alt="Envelope with heart">
+      <p>Bé iu nhấn vào đây nè 💌</p>
+    </div>
+
+    <div class="letter" id="letter">
+      <div class="content">
+        <h2>Gửi em,</h2>
+        <p>
+Anh biết rằng thời gian qua chúng ta gặp gỡ và tìm hiểu mới chỉ vỏn vẹn hai tuần. Có lẽ so với cả một chặng đường dài phía trước, khoảng thời gian này thật ngắn ngủi. Chúng ta vẫn còn nhiều điều chưa kịp kể nhau nghe, chưa kịp hiểu hết về những góc sâu trong tim mỗi người. Nhưng thật lạ, chỉ bằng những khoảnh khắc đơn giản ấy, em đã để lại trong anh những cảm xúc rất đặc biệt.
+
+Từ những cuộc trò chuyện nhẹ nhàng, những lần gặp gỡ đầy tự nhiên, anh dần cảm nhận được ở em một điều gì đó ấm áp, gần gũi và rất thật. Không phải là cảm giác bùng nổ thoáng qua, mà là sự rung động âm ỉ, nhẹ nhàng nhưng sâu sắc. Nó khiến anh mong được nhìn thấy em mỗi ngày, được lắng nghe em kể về những điều nhỏ bé nhất, và muốn ở bên để sẻ chia từng khoảnh khắc.
+
+Anh không vội vàng hứa hẹn những điều lớn lao, cũng không muốn em cảm thấy bị cuốn theo những lời hoa mỹ. Anh chỉ muốn thành thật với cảm xúc của chính mình, rằng từ sâu trong tim, anh đã dành cho em một sự trân trọng và thương mến thật sự.
+
+Có thể chúng ta vẫn đang ở giai đoạn bắt đầu, nhưng anh mong rằng từ đây, chúng ta có thể cùng nhau viết tiếp những trang mới. Dù sau này có ra sao, anh vẫn muốn hiện tại này là thật lòng nhất.
+
+Anh thích em. Không phải vì những điều hoàn hảo ở em, mà vì chính con người em – tự nhiên, đáng yêu và khiến anh cảm thấy bình yên khi ở cạnh.
+
+Nếu em cũng cảm nhận được một chút gì đó tương tự, anh hy vọng chúng ta sẽ cùng nhau bước tiếp, chậm rãi nhưng chắc chắn, để hiểu và thương nhau nhiều hơn nữa. Cho anh cơ hội được bên cạnh và chăm sóc em nhé? Nếu em sẵn lòng, hãy cùng anh ký tên vào bức thư này — như một lời đồng ý cho cơ hội bắt đầu.
+        </p>
+        <p class="signature">— Anh</p>
+      </div>
+
+      <div class="signature-section">
+        <div class="sig-label">Chữ ký của Anh:</div>
+        <canvas id="sigMe" class="signature-canvas"></canvas>
+        <div class="sig-buttons">
+          <button onclick="clearCanvas(sigMeCtx, sigMeCanvas)">Xóa</button>
+          <button onclick="downloadSignature(sigMeCanvas, 'chu-ky-anh.png')">Tải xuống</button>
+        </div>
+
+        <div class="sig-label">Chữ ký của Em:</div>
+        <canvas id="sigHer" class="signature-canvas"></canvas>
+        <div class="sig-buttons">
+          <button onclick="clearCanvas(sigHerCtx, sigHerCanvas)">Xóa</button>
+          <button onclick="downloadSignature(sigHerCanvas, 'chu-ky-em.png')">Tải xuống</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="hearts"></canvas>
+
+  <script>
+    const envelope = document.getElementById('envelope');
+    const letter = document.getElementById('letter');
+
+    envelope.addEventListener('click', () => {
+      envelope.classList.add('opening');
+      setTimeout(() => {
+        envelope.style.display = 'none';
+        letter.style.display = 'block';
+        startHearts();
+      }, 600);
+    });
+
+    // HEART ANIMATION
+    const canvas = document.getElementById('hearts');
+    const ctx = canvas.getContext('2d');
+    let hearts = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function startHearts() {
+      setInterval(() => {
+        hearts.push({
+          x: Math.random() * canvas.width,
+          y: canvas.height + 20,
+          size: 10 + Math.random() * 20,
+          speed: 1 + Math.random() * 2
+        });
+      }, 200);
+      animate();
+    }
+
+    function drawHeart(x, y, size) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.scale(size / 50, size / 50);
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.bezierCurveTo(0, -3, -5, -15, -25, -15);
+      ctx.bezierCurveTo(-55, -15, -55, 22.5, -55, 22.5);
+      ctx.bezierCurveTo(-55, 40, -35, 62, 0, 80);
+      ctx.bezierCurveTo(35, 62, 55, 40, 55, 22.5);
+      ctx.bezierCurveTo(55, 22.5, 55, -15, 25, -15);
+      ctx.bezierCurveTo(10, -15, 0, -3, 0, 0);
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(255, 0, 100, 0.8)';
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      hearts.forEach(h => {
+        h.y -= h.speed;
+        drawHeart(h.x, h.y, h.size);
+      });
+      hearts = hearts.filter(h => h.y + h.size > 0);
+      requestAnimationFrame(animate);
+    }
+
+    // SIGNATURE
+    function initSignature(canvas) {
+      const ctx = canvas.getContext('2d');
+      let drawing = false;
+
+      function getPos(e) {
+        const rect = canvas.getBoundingClientRect();
+        if (e.touches) {
+          return {
+            x: e.touches[0].clientX - rect.left,
+            y: e.touches[0].clientY - rect.top
+          };
+        } else {
+          return { x: e.offsetX, y: e.offsetY };
+        }
+      }
+
+      function start(e) {
+        drawing = true;
+        ctx.beginPath();
+        const pos = getPos(e);
+        ctx.moveTo(pos.x, pos.y);
+      }
+
+      function draw(e) {
+        if (!drawing) return;
+        const pos = getPos(e);
+        ctx.lineTo(pos.x, pos.y);
+        ctx.stroke();
+      }
+
+      function end() {
+        drawing = false;
+      }
+
+      canvas.addEventListener('mousedown', start);
+      canvas.addEventListener('mousemove', draw);
+      canvas.addEventListener('mouseup', end);
+      canvas.addEventListener('mouseleave', end);
+
+      canvas.addEventListener('touchstart', start);
+      canvas.addEventListener('touchmove', draw);
+      canvas.addEventListener('touchend', end);
+
+      return ctx;
+    }
+
+    const sigMeCanvas = document.getElementById('sigMe');
+    const sigHerCanvas = document.getElementById('sigHer');
+    const sigMeCtx = initSignature(sigMeCanvas);
+    const sigHerCtx = initSignature(sigHerCanvas);
+
+    function clearCanvas(ctx, canvas) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function downloadSignature(canvas, filename) {
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = canvas.toDataURL();
+      link.click();
+    }
+  </script>
+</body>
+</html>
